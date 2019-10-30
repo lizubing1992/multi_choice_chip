@@ -2,9 +2,9 @@
 /// @time 2019/5/13 11:20
 /// @author lizubing
 import 'package:flutter/material.dart';
+import 'package:multi_choice_chip/select_choice_chip.dart';
 
 import 'base_select_entity.dart';
-import 'border_choice_chip.dart';
 
 class MultiSelectChip<T extends BaseSelectEntity> extends StatefulWidget {
   /// 标签的list
@@ -32,27 +32,10 @@ class _MultiSelectChipState<T extends BaseSelectEntity>
     List<Widget> choices = List();
     widget.dataList.forEach((item) {
       choices.add(Container(
-        height: 31,
         padding: EdgeInsets.all(4),
-        child: BorderChoiceChip(
-          label: Text(
-            item.getTag(),
-            style: TextStyle(fontSize: 14),
-          ),
+        child: SelectChoiceChip(
+          text: item.getTag(),
           selected: selectList.contains(item),
-          materialTapTargetSize: MaterialTapTargetSize.padded,
-          labelPadding: EdgeInsets.only(bottom: 9),
-          padding: EdgeInsets.only(left: 12, right: 12, bottom: 9),
-          selectedColor: Colors.white,
-          backgroundColor: Colors.white,
-          selectShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: Colors.blue, width: 0.5),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: Colors.black, width: 0.5),
-          ),
           onSelected: (selected) {
             setState(() {
               selectList.contains(item)
